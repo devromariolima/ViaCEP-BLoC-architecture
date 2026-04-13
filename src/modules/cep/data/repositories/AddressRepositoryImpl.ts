@@ -6,7 +6,11 @@ import { ViaCepDatasource } from '../datasources/ViaCepDatasource'
 import { AddressModel } from '../models/AddressModel'
 
 export class AddressRepositoryImpl implements AddressRepository {
-  constructor(private datasource: ViaCepDatasource) {}
+  private datasource: ViaCepDatasource
+
+  constructor(datasource: ViaCepDatasource) {
+    this.datasource = datasource
+  }
 
   async getAddressByCep(cep: string): Promise<Address> {
     const data = await this.datasource.getCep(cep)
