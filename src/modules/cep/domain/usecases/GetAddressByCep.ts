@@ -4,7 +4,11 @@ import type { Address } from '../entities/Address'
 import type { AddressRepository } from '../repositories/AddressRepository'
 
 export class GetAddressByCep {
-  constructor(private repository: AddressRepository) {}
+  private repository: AddressRepository
+
+  constructor(repository: AddressRepository) {
+    this.repository = repository
+  }
 
   async execute(cep: string): Promise<Address> {
     if (!cep || cep.length !== 8) {
